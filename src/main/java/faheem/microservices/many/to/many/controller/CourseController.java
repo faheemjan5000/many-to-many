@@ -3,7 +3,6 @@ package faheem.microservices.many.to.many.controller;
 
 import faheem.microservices.many.to.many.entity.Course;
 import faheem.microservices.many.to.many.entity.Student;
-import faheem.microservices.many.to.many.exception.CourseAlreadyExistsException;
 import faheem.microservices.many.to.many.exception.CourseNotFoundException;
 import faheem.microservices.many.to.many.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +23,7 @@ public class CourseController {
     CourseService courseService;
 
     @PostMapping("/addCourse")
-    public Course addCourse(@RequestBody Course course) throws CourseAlreadyExistsException {
+    public Course addCourse(@RequestBody Course course)  {
         log.info("CourseController.addCourse() method is called...");
         return courseService.addCourse(course);
     }
@@ -46,5 +45,11 @@ public class CourseController {
     public Course getCourseById(@PathParam("courseId") int courseId) throws CourseNotFoundException {
         log.info("CourseController.getCourseById() method called....");
         return courseService.getCourseById(courseId);
+    }
+
+    @GetMapping("/getAllStudentsRegisteredInCourse")
+    public List<Student> getAllStudentsRegisteredInCourse(int courseId) throws CourseNotFoundException {
+        log.info("CourseController.getAllStudentsRegisteredInCourse() method called....");
+        return courseService.getAllStudentsRegisteredInCourse(courseId);
     }
 }
