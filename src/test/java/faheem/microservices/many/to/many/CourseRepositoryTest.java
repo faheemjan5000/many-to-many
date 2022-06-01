@@ -70,8 +70,8 @@ public class CourseRepositoryTest {
                 .firstName("melissa")
                 .lastName("latella")
                 .build();
-        int courId = 2;
-        if(courseRepository.findById(2).isPresent()) {
+        int courseId = 2;
+        if(courseRepository.findById(courseId).isPresent()) {
             log.info("course found");
             Course course = courseRepository.findById(2).get();
             course.addStudent(melissa);
@@ -79,7 +79,7 @@ public class CourseRepositoryTest {
             log.info("course added");
         }
         else{
-            log.info("course with id not found : {}",courId);
+            log.info("course with id not found : {}",courseId);
         }
     }
 
